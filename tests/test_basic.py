@@ -9,13 +9,13 @@ from docutils.readers import Reader
 from docutils.core import publish_parts
 
 from commonmark import Parser
-from sphinx_markdown_parser.parser import CommonMarkParser
+from sphinx_markdown_parser.parser import MarkdownParser
 
 
 class TestParsing(unittest.TestCase):
 
     def assertParses(self, source, expected, alt=False):  # noqa
-        parser = CommonMarkParser()
+        parser = MarkdownParser()
         parser.parse(dedent(source), new_document('<string>'))
         self.assertMultiLineEqual(
             dedent(expected).lstrip(),
@@ -44,9 +44,9 @@ class TestParsing(unittest.TestCase):
             """
             <?xml version="1.0" ?>
             <document source="&lt;string&gt;">
-              <section ids="heading-1" names="heading\ 1">
+              <section ids="heading-1" names="heading-1">
                 <title>Heading 1</title>
-                <section ids="heading-2" names="heading\ 2">
+                <section ids="heading-2" names="heading-2">
                   <title>Heading 2</title>
                   <paragraph>Body</paragraph>
                 </section>
@@ -61,7 +61,7 @@ class TestParsing(unittest.TestCase):
             """
             <?xml version="1.0" ?>
             <document source="&lt;string&gt;">
-              <section ids="heading-foo" names="heading\ foo">
+              <section ids="heading-foo" names="heading-foo">
                 <title>
                   Heading \n\
                   <emphasis>foo</emphasis>
@@ -120,7 +120,9 @@ class TestParsing(unittest.TestCase):
             u"""
             <?xml version="1.0" ?>
             <document source="&lt;string&gt;">
-              <paragraph>©</paragraph>
+              <paragraph>
+                <raw format="html" xml:space="preserve">&amp;copy;</raw>
+              </paragraph>
             </document>
             """
         )
@@ -242,7 +244,7 @@ class TestParsing(unittest.TestCase):
             <?xml version="1.0" ?>
             <document source="&lt;string&gt;">
               <paragraph>
-                <image alt="title" uri="/url">foo</image>
+                <image title="title" uri="/url">foo</image>
               </paragraph>
             </document>
             """
@@ -424,11 +426,7 @@ class TestParsing(unittest.TestCase):
             <?xml version="1.0" ?>
             <document source="&lt;string&gt;">
               <paragraph>Foo</paragraph>
-              <paragraph>
-                <raw format="html" xml:space="preserve">&lt;blink&gt;</raw>
-                Blink
-                <raw format="html" xml:space="preserve">&lt;/blink&gt;</raw>
-              </paragraph>
+              <raw format="html" xml:space="preserve">&lt;blink&gt;Blink&lt;/blink&gt;</raw>
             </document>
             """
         )

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from sphinx_markdown_parser.parser import CommonMarkParser
+from sphinx_markdown_parser.parser import MarkdownParser
 from sphinx_markdown_parser.transform import AutoStructify
 
 templates_path = ['_templates']
@@ -22,7 +22,7 @@ htmlhelp_basename = 'sphinxproj'
 
 def setup(app):
     app.add_source_suffix('.md', 'markdown')
-    app.add_source_parser(CommonMarkParser)
+    app.add_source_parser(MarkdownParser)
     app.add_config_value('markdown_parser_config', {
         'enable_inline_math': True,
     }, True)

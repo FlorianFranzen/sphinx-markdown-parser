@@ -1,11 +1,11 @@
 
 # -*- coding: utf-8 -*-
 
-from sphinx_markdown_parser.parser import CommonMarkParser
+from sphinx_markdown_parser.parser import MarkdownParser
 
 templates_path = ['_templates']
 source_suffix = '.md'
-source_parsers = { '.md': CommonMarkParser }
+source_parsers = { '.md': MarkdownParser }
 master_doc = 'index'
 project = u'sphinxproj'
 copyright = u'2015, rtfd'

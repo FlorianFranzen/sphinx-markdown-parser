@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from sphinx_markdown_parser.parser import CommonMarkParser
+from sphinx_markdown_parser.parser import MarkdownParser
 
 templates_path = ['_templates']
 master_doc = 'index'
@@ -21,4 +21,4 @@ htmlhelp_basename = 'sphinxproj'
 
 def setup(app):
     app.add_source_suffix('.md', 'markdown')
-    app.add_source_parser(CommonMarkParser)
+    app.add_source_parser(MarkdownParser)
