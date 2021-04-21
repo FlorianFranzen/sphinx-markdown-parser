@@ -368,10 +368,13 @@ class MarkdownParser(parsers.Parser):
         reference = nodes.reference()
         href = node.attrib.pop('href', '')
         if href.startswith("/"):
-            # resolve absolute paths against the site root; sphinx-rst does this
-            docname = self.document.settings.env.path2doc(self.document.current_source)
-            targetname = self.document.settings.env.relfn2path(href, docname)[0]
-            href = posixpath.relpath(targetname, posixpath.dirname(docname))
+            try:
+                # resolve absolute paths against the site root; sphinx-rst does this
+                docname = self.document.settings.env.path2doc(self.document.current_source)
+                targetname = self.document.settings.env.relfn2path(href, docname)[0]
+                href = posixpath.relpath(targetname, posixpath.dirname(docname))
+            except:
+                pass
         try:
             r = urllib.parse.urlparse(href)
             if r.path.endswith(".md"):
