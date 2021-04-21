@@ -99,7 +99,7 @@ class TestParsing(unittest.TestCase):
             <document source="&lt;string&gt;">
               <section ids="i" names="i">
                 <title id="i">I</title>
-                <literal_block language="py" xml:space="preserve">hello = 'world'</literal_block>
+                <literal_block language="language-py" xml:space="preserve">hello = 'world'</literal_block>
                 <section ids="a" names="a">
                   <title id="a">
                     <emphasis>
@@ -193,7 +193,8 @@ class TestParsing(unittest.TestCase):
                       </tbody>
                     </tgroup>
                   </table>
-                  <raw format="html" xml:space="preserve">&lt;video hello=&quot;world&quot;&gt;&lt;boo&gt;howdy&lt;/boo&gt;&lt;/video&gt;</raw>
+                  <raw format="html" xml:space="preserve">&lt;video hello=&quot;world&quot;&gt;&lt;boo&gt;howdy&lt;/boo&gt;&lt;/video&gt;
+                  </raw>
                   <paragraph>wow</paragraph>
                 </section>
               </section>

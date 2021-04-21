@@ -102,12 +102,8 @@ class TestParsing(unittest.TestCase):
             """
             <?xml version="1.0" ?>
             <document source="&lt;string&gt;">
-              <paragraph>
-                This is a paragraph
-
-
-                This is a new line
-              </paragraph>
+              <paragraph>This is a paragraph
+            This is a new line</paragraph>
             </document>
             """
         )
@@ -195,9 +191,7 @@ class TestParsing(unittest.TestCase):
             <?xml version="1.0" ?>
             <document source="&lt;string&gt;">
               <paragraph>
-                <pending_xref refdomain="None" refexplicit="True" reftarget="/foo" reftype="any" refwarn="True">
-                  <reference refuri="/foo">link</reference>
-                </pending_xref>
+                <reference refuri="/foo">link</reference>
               </paragraph>
             </document>
             """
@@ -210,9 +204,7 @@ class TestParsing(unittest.TestCase):
             <?xml version="1.0" ?>
             <document source="&lt;string&gt;">
               <paragraph>
-                <pending_xref refdomain="None" refexplicit="True" reftarget="foo" reftype="any" refwarn="True">
-                  <reference refuri="foo">link</reference>
-                </pending_xref>
+                <reference refuri="foo">link</reference>
               </paragraph>
             </document>
             """
@@ -226,9 +218,7 @@ class TestParsing(unittest.TestCase):
             <document source="&lt;string&gt;">
               <paragraph>
                 <strong>
-                  <pending_xref refdomain="None" refexplicit="True" reftarget="foo" reftype="any" refwarn="True">
-                    <reference refuri="foo">link</reference>
-                  </pending_xref>
+                  <reference refuri="foo">link</reference>
                 </strong>
               </paragraph>
             </document>
@@ -364,8 +354,11 @@ class TestParsing(unittest.TestCase):
             <?xml version="1.0" ?>
             <document source="&lt;string&gt;">
               <paragraph>Code:</paragraph>
-              <literal_block xml:space="preserve">#!/bin/sh
-            python</literal_block>
+              <literal_block xml:space="preserve">
+                <literal>#!/bin/sh
+            python
+            </literal>
+              </literal_block>
             </document>
             """
         )
@@ -446,7 +439,8 @@ class TestParsing(unittest.TestCase):
               <paragraph>Foo</paragraph>
               <raw format="html" xml:space="preserve">&lt;div&gt;
                 &lt;blink&gt;Blink&lt;/blink&gt;
-            &lt;/div&gt;</raw>
+            &lt;/div&gt;
+            </raw>
             </document>
             """
         )
